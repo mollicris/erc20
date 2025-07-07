@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: UNLICENSED
-pragma solidity ^0.8.13;
+pragma solidity ^0.8.20;
 
 import {Test, console} from "forge-std/Test.sol";
 import {Counter} from "../src/Counter.sol";
@@ -9,6 +9,8 @@ import {IAccessControl} from "@openzeppelin/contracts/access/IAccessControl.sol"
 import {ERC20Pausable} from "@openzeppelin/contracts/token/ERC20/extensions/ERC20Pausable.sol";
 import {ERC20} from "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 import {IERC20Errors} from "@openzeppelin/contracts/token/ERC20/ERC20.sol";
+
+
 
 contract TokenTest is Test {
     Counter public counter;
@@ -59,8 +61,8 @@ contract TokenTest is Test {
         vm.expectRevert("Minting exceeds cap");
         myToken.mint(minter, mintAmount);
     }
-/*
-    function testOnlyMinterCanMint() public {
+
+ /*   function testOnlyMinterCanMint() public {
     
     
     vm.prank(other); // Simula llamada desde cuenta no autorizada
@@ -92,14 +94,8 @@ contract TokenTest is Test {
         // Intentar minting mientras está pausado
         myToken.grantRole(myToken.MINTER_ROLE(), minter);
         vm.prank(minter);
-        vm.expectRevert("Pausable: paused");
-        //vm.expectRevert(abi.encodeWithSelector(ERC20Pausable.EnforcedPause.selector));
-        //vm.expectRevert(
-        //abi.encodeWithSelector(
-        
-        //ERC20Pausable.EnforcedPause.selector
-   // )
-//);
+        //vm.expectRevert("Pausable: paused");
+        vm.expectRevert(abi.encodeWithSignature("EnforcedPause()"));
         myToken.mint(minter, 100);
 
         // Despausar el contrato

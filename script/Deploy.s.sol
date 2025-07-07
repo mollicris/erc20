@@ -3,7 +3,7 @@ pragma solidity ^0.8.13;
 
 import "forge-std/Script.sol";
 import "../src/MyToken.sol";
-import "../test/TokenTest.t.sol";
+//import "../test/TokenTest.t.sol";
 
 contract DeployScript is Script {
     function run() external {
@@ -11,7 +11,7 @@ contract DeployScript is Script {
         vm.startBroadcast(deployerPrivateKey); 
 
         MyToken myToken = new MyToken();
-        TokenTest tokenTest = new TokenTest();
+        //TokenTest tokenTest = new TokenTest();
         vm.stopBroadcast();
         console.log("Contract deployed at:", address(myToken));
     }
