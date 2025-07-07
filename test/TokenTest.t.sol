@@ -75,7 +75,7 @@ contract TokenTest is Test {
         )
     );
 
-    myToken.mint(other, 100); // Debe revertir
+    myToken.mint(other, 100); // Debe 
 }
 */
 
